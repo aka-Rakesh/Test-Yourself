@@ -1,16 +1,14 @@
 import abi from "../../contracts/abi.js";
 import bytecode from "../../contracts/bytecode.js";
 import { ContractFactory } from "ethers";
+import { useEthersSigner } from "../../components/hedera/signer";
 
 async function contractDeployFcn(walletData) {
 	console.log(`\n=======================================`);
 	console.log(`- Deploying smart contract on Hedera...🟠`);
 
-	// ETHERS PROVIDER AND SIGNER
-	const provider = walletData[1];
-	const signer = provider.getSigner();
-
 	// DEPLOY SMART CONTRACT
+	const signer = useEthersSigner()
 	let contractAddress;
 	try {
 		const gasLimit = 4000000;

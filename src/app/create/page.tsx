@@ -3,6 +3,9 @@ import { useState } from "react";
 // import { MdDelete } from "react-icons/md";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { useAccount } from "wagmi";
+import contractDeployFcn from "../../components/hedera/contractDeploy";
+import { useEthersProvider } from "../../components/hedera/provider";
+import { useEthersSigner } from "../../components/hedera/signer";
 
 // import { useIsLoggedIn } from "@dynamic-labs/sdk-react-core";
 // import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
@@ -14,6 +17,8 @@ export default function Home() {
   const [loadingAI, setLoadingAI] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const { address, isConnecting, isDisconnected } = useAccount();
+  const provider = useEthersProvider()
+  const signer = useEthersSigner()
 
   // const isLoggedIn = useIsLoggedIn();
   // console.log(isLoggedIn);
@@ -36,7 +41,7 @@ export default function Home() {
   }
 
   async function createQuiz() {
-    // validate quiz, each question should have an answer ans at least 2 options
+    // validate quiz, each question should have an answer and at least 2 options
     setLoading(true);
     console.log(questions);
     if (
@@ -52,6 +57,24 @@ export default function Home() {
       return;
     }
 
+    // Deploy the smart contract for leaderboard storage
+    let contractAddress;
+    try {
+      const walletData = [address, provider, signer];
+      contractAddress = await contractDeployFcn(walletData);
+  
+      if (!contractAddress) {
+        alert("Failed to deploy smart contract.");
+        setLoading(false);
+        return;
+      }
+    } catch (error) {
+      console.error("Smart contract deployment failed:", error);
+      setLoading(false);
+      return;
+    }
+  
+    // After deploying the smart contract, send the quiz data to the backend
     fetch(
       "https://incalculable-football-gigantic.functions.on-fleek.app/save_question",
       {
@@ -64,6 +87,7 @@ export default function Home() {
           quiz_name: quizName,
           quiz_description: quizDescription,
           user_address: address,
+          contract_address: contractAddress,
         }),
       }
     )
