@@ -4,19 +4,32 @@ import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 const people = [
   {
     id: 1,
+    name: "Urvashi.",
+    designation: "FullStack Dev",
+    image: "https://avatars.githubusercontent.com/u/87687828?v=4",
+  },
+  {
+    id: 2,
+    name: "Harshita",
+    designation: "Designer, 3D Artist",
+    image:
+      "https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yaloxMEFHaXg0bTllS0VXeUg0VHRjSDhId2oifQ",
+  },
+  {
+    id: 3,
     name: "Yash",
     designation: "FullStack Dev",
     image:
       "https://avatars.githubusercontent.com/u/114144836?s=400&u=b6e489363b59e9cb5e6bff71f1c86b1e503c355e&v=4",
   },
   {
-    id: 2,
+    id: 4,
     name: "Rachit",
     designation: "FullStack Dev",
     image: "https://avatars.githubusercontent.com/u/70265590?v=4",
   },
   {
-    id: 3,
+    id: 5,
     name: "Rakesh",
     designation: "Web3 Developer",
     image:
