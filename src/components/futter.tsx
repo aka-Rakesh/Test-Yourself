@@ -23,11 +23,11 @@ export function BackgroundBeamsDemo() {
             </p> */}
             <Link href={"https://github.com/notnotrachit/quiz3"}>
               {" "}
-              <FaGithub size={60} />
+              <FaGithub color="black" size={60} />
             </Link>
 
-            <FaSquareXTwitter size={60} />
-            <SiFarcaster size={60} />
+            <FaSquareXTwitter color="black" size={60} />
+            <SiFarcaster color="black" size={60} />
           </div>
 
           <div className="max-w-2xl  mx-auto p-4 pb-0">

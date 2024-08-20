@@ -62,13 +62,14 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={
-          inter.className + " dark:bg-dot-white/[0.2] bg-dot-black/[0.2]"
+          inter.className + " dark:bg-dot-white/[0.2] bg-dot-black/[0.2] bg-black h-screen"
         }
       >
         <Web3ModalProvider initialState={initialState}>
           <w3m-button />
           {children}
         </Web3ModalProvider>
+        
       </body>
     </html>
   );
